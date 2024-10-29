@@ -1,17 +1,17 @@
  <div class="container">
   <div class="row">
-    <% 10.times  do %>
+    <% protery.each do |propery| %>
     <div class="card col-lg-3 col-md-4 ms-6 mt-2 rounded">
       <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTE3NzY4MTU2OTMzMjYwMTQ5OQ%3D%3D/original/7fe72e51-f9b5-4702-b71c-4b6c2134507b.jpeg?im_w=960&im_q=highq" class="card-img-top rounded" alt="..." >
       <div class="card-body">
         <div class="row">
-         <b class="col-8"> Colchester, UK </b>
+         <b class="col-8"> <%= propery.name %> </b>
          <div class="col-4"><i class="bi bi-star"></i> 4.92</div>
         </div>
         <div class="text-muted">Stay with IevaStay with Ieva
         Investments, · Investments </div>
         <div class="text-muted">  Aug 1 – 6Aug 1 – 6 </div>
-         <p>  $65  night </p>
+         <p>  <%= humanized_money_with_symbol(propery.price) %>  night </p>
       </div>
     </div>
     <% end %>
