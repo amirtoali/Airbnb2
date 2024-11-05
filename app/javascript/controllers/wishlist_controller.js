@@ -5,6 +5,11 @@ export default class extends Controller {
   connect() {
   }
   updatewishlistStatus(){
+     const isUserLoggedIn = this.element.dataset.userLoggedIn;
+     if(isUserLoggedIn==="false"){
+      document.getElementById("login_id").click()
+      return
+     }
     if(this.element.dataset.status==="false"){
     this.element.classList.remove("bi-heart")
     this.element.classList.add("bi-heart-fill")
