@@ -24,11 +24,14 @@
         </div>
         
         <!-- Heart icon fixed at the top-right corner of the card -->
-        <i class="bi bi-heart position-absolute top-0 fill-red end-5 text-danger p-2" style="font-size: 2rem; z-index: 10;"
+        <i class="bi position-absolute top-0 fill-red end-5 text-danger p-2 <%= propery.wishlisted_by?(current_user) ? 'bi-heart-fill' : 'bi-heart' %>" style="font-size: 2rem; z-index: 10;"
         data-controller= "wishlist"
          data-action="click->wishlist#updatewishlistStatus"
-         data-status="false"
-          data-user-logged-in = "<%=  user_signed_in? %>"></i>
+         data-status="<%=propery.wishlisted_by?(current_user)%> "
+         data-user-id = "<%= current_user&.id %>"
+         data-proptry-id = "<%= propery.id %>"
+         data-user-logged-in = "<%=  user_signed_in? %>"
+         data-wishlist-id="<%= propery.wishlists.find_by(user: current_user)&.id %>"></i>
 
         <div class="card-body">
           <div class="row">
