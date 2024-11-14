@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  property: one
+  checkout: 2024-11-08
+  checkin: 2024-11-08
+
+two:
+  user: two
+  property: two
+  checkout: 2024-11-08
+  checkin: 2024-11-08

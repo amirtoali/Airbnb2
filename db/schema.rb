@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_11_06_094201) do
+ActiveRecord::Schema[7.0].define(version: 2024_11_08_160128) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -55,6 +55,17 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_06_094201) do
     t.integer "reviews_count", default: 0, null: false
   end
 
+  create_table "reservations", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "property_id", null: false
+    t.date "checkout"
+    t.date "checkin"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_reservations_on_property_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.string "content"
     t.integer "cleanliness_rating"
@@ -95,6 +106,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_06_094201) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "reservations", "properties"
+  add_foreign_key "reservations", "users"
   add_foreign_key "reviews", "properties"
   add_foreign_key "reviews", "users"
   add_foreign_key "wishlists", "properties"

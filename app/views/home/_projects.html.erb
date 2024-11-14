@@ -6,7 +6,9 @@
           <div class="carousel-inner">
             <% propery.images.each_with_index do |img, img_index| %>
               <div class="carousel-item <%= 'active' if img_index.zero? %>">
+                 <%= link_to property_path(propery) do %>
                 <%= image_tag img, class: "card-img-top rounded d-block", style: "height: 200px;" %>
+                <% end %>
               </div>
             <% end %>
           </div>
@@ -39,7 +41,7 @@
             <div class="col-4"><i class="bi bi-star"></i> <%= propery.final_average.round(2).to_s %></div>
           </div>
           <div class="text-muted">Stay with Ieva Investments, · Investments</div>
-          <div class="text-muted">Aug 1 – 6</div>
+          <div class="text-muted"><%= propery.formatted_date_range %></div>
           <p><%= humanized_money_with_symbol(propery.price) %> night</p>
         </div>
       </div>
