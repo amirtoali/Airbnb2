@@ -7,6 +7,7 @@ class Property < ApplicationRecord
     has_many :wishlistsed_users, through: :wishlists, source: :user, dependent: :destroy
     has_many :reservations, dependent: :destroy
     has_many :reserved_users, through: :reservations, source: :user, dependent: :destroy
+    has_rich_text :description
 
     def  availbilty
 		  upcomming_reservations = self.reservations.upcoming_reservation.first

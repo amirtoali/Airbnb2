@@ -34,16 +34,26 @@
 		<div class="row mt-5"><hr></div>
 		<div class="row mt-4">
 			<div class="col-2 mb-5">
-				<%=   "https://a0.muscache.com/im/pictures/user/8d5e732d-eca8-441f-983c-9c93e67f2e89.jpg?im_w=240", class: "card-img-top d-block", style: "height: 50px; width: 50px; border-radius: 50%;" %>
+				<%= image_tag "https://a0.muscache.com/im/pictures/user/8d5e732d-eca8-441f-983c-9c93e67f2e89.jpg?im_w=240", class: "card-img-top d-block", style: "height: 50px; width: 50px; border-radius: 50%;" %>
 			</div>
 			<div class="col-5">
-				<div class="row h6">Hosted by <%= @proptery.user.name %>  </div>
+				<div class="row h6">Hosted by <%= @proptery.name %>  </div>
 				<div class="row text-muted">9 years hosting</div>
 			</div>
 			<hr>
 			<div class="row">
-				<%= @proptery.description %>
+				 <%= truncate(@proptery.description.to_plain_text, length: 100, omission: '...See More') %>
+				
+
 			</div>
 		</div>
 	</div>
 </div>
+			<div class="progress">
+			  <div class="progress-bar" role="progressbar" 
+			       style="width: <%= ((@proptery.reviews.average(:final_rating).to_f / 5) * 100).round(2) %>%;" 
+			       aria-valuenow="<%= ((@proptery.reviews.average(:final_rating).to_f / 5) * 100).round(2) %>" 
+			       aria-valuemin="0" 
+			       aria-valuemax="100">
+			  </div>
+			</div>
