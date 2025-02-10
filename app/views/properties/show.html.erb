@@ -1,59 +1,79 @@
 <div class="container">
-	<div class="row">
-		<div class="col-10 h1"><%= @proptery.name %> </div>
-	</div>
-	<div class="row">
-	 <div class="col-lg-6 col-md-6 col-sm-12">
-	 	<%= image_tag @proptery.images.first, class: "card-img-top rounded d-block", style: "height: 300px;" %>
-	 </div>
-	 <div class="col-lg-6 col-md-6 col-sm-12">
-	 	<div class="row">
-	 		<div class="col-6">
-	 			<%= image_tag @proptery.images.second, class: "card-img-top rounded d-block", style: "height: 150px;" %>
-	 		</div>
-	 	  <div class="col-6">
-	 			<%= image_tag @proptery.images.third, class: "card-img-top rounded d-block", style: "height: 150px;" %>
-	 	  </div>
-	 	</div>
-	 	<div class="row mt-1">
-	 		<div class="col-6">
-	 			<%= image_tag @proptery.images.fourth, class: "card-img-top rounded d-block", style: "height: 150px;" %>
-	 		</div>
-	 	  <div class="col-6">
-	 			<%= image_tag @proptery.images.fifth, class: "card-img-top rounded d-block", style: "height: 150px;" %>
-	 	  </div>
-	 	</div>	 	
-	 </div>
-	</div>
-	<div class="col-8">
-		<div class="row mt-4">
-			<h4><%= @proptery.address_1 %> <%= @proptery.address_2 %>, <%= @proptery.countroy %> </h4>
-		</div>
-		<div class="row ms-1"> 8 guests. 3 bedrooms. 3 beds. 3 baths</div>
-		<div class="row"><div class="col-4 h6"><i class="bi bi-star"></i> <%= @proptery.final_average.round(2).to_s %> <span class="border-bottom "><%= @proptery.reviews.count %>reveiws </span></div>
-		<div class="row mt-5"><hr></div>
-		<div class="row mt-4">
-			<div class="col-2 mb-5">
-				<%= image_tag "https://a0.muscache.com/im/pictures/user/8d5e732d-eca8-441f-983c-9c93e67f2e89.jpg?im_w=240", class: "card-img-top d-block", style: "height: 50px; width: 50px; border-radius: 50%;" %>
-			</div>
-			<div class="col-5">
-				<div class="row h6">Hosted by <%= @proptery.name %>  </div>
-				<div class="row text-muted">9 years hosting</div>
-			</div>
-			<hr>
-			<div class="row">
-				 <%= truncate(@proptery.description.to_plain_text, length: 100, omission: '...See More') %>
-				
-
-			</div>
-		</div>
-	</div>
+  <div class="row">
+    <div class="col-10 h1">
+      <%= @proptery.name %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <%= image_tag @proptery.images.first, class: "card-img-top rounded d-block", style: "height: 300px;" %>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <div class="row">
+        <div class="col-6">
+          <%= image_tag @proptery.images.second, class: "card-img-top rounded d-block", style: "height: 150px;" %>
+        </div>
+        <div class="col-6">
+          <%= image_tag @proptery.images.third, class: "card-img-top rounded d-block", style: "height: 150px;" %>
+        </div>
+      </div>
+      <div class="row mt-1">
+        <div class="col-6">
+          <%= image_tag @proptery.images.fourth, class: "card-img-top rounded d-block", style: "height: 150px;" %>
+        </div>
+        <div class="col-6">
+          <%= image_tag @proptery.images.fifth, class: "card-img-top rounded d-block", style: "height: 150px;" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-8">
+    <div class="row mt-4">
+      <h4>
+        <%= @proptery.address_1 %> <%= @proptery.address_2 %>, <%= @proptery.countroy %>
+      </h4>
+    </div>
+    <div class="row ms-1 p">1 king bed, Private attached bathroom</div>
+    <div class="row">
+     <div class="card shadow rounded p-4 mt-4">
+      <div class="row">
+       <div class="col-3 h5"> Bertrand and Howard </div> 
+       <div class="col-5 p"> Bertrand and Howard are the kind of hosts that make Airbnb a success</div>
+      <div class="col-4 h6">
+        <i class="bi bi-star"></i>
+        <%= @proptery.final_average.round(2).to_s %>
+        <span class="border-start ms-3">
+          <%= @proptery.reviews.count %> reviews
+        </span>
+      </div>
+      </div>
+     </div>
+    </div>
+    <div class="row mt-5">
+      <hr>
+    </div>
+    <div class="row mt-2">
+      <div class="col-2 mb-2">
+        <%= image_tag "https://a0.muscache.com/im/pictures/user/8d5e732d-eca8-441f-983c-9c93e67f2e89.jpg?im_w=240", class: "card-img-top d-block", style: "height: 50px; width: 50px; border-radius: 50%;" %>
+      </div>
+      <div class="col-5">
+        <div class="row h6">
+          Hosted by <%= @proptery.name %>
+        </div>
+        <div class="row text-muted">9 years hosting</div>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <%= truncate(@proptery.description.to_plain_text, length: 100, omission: '...See More') %>
+    </div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar" role="progressbar"
+         style="width: <%= ((@proptery.reviews.average(:final_rating).to_f / 5) * 100).round(2) %>%;"
+         aria-valuenow="<%= ((@proptery.reviews.average(:final_rating).to_f / 5) * 100).round(2) %>"
+         aria-valuemin="0"
+         aria-valuemax="100">
+    </div>
+  </div>
 </div>
-			<div class="progress">
-			  <div class="progress-bar" role="progressbar" 
-			       style="width: <%= ((@proptery.reviews.average(:final_rating).to_f / 5) * 100).round(2) %>%;" 
-			       aria-valuenow="<%= ((@proptery.reviews.average(:final_rating).to_f / 5) * 100).round(2) %>" 
-			       aria-valuemin="0" 
-			       aria-valuemax="100">
-			  </div>
-			</div>
